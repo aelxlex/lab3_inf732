@@ -170,7 +170,7 @@ describe('NotasService', () => {
     });
   });
 
-  //Laboratorio prueba unitaria para FIND BY TITLE
+  //prueba unitaria para FIND BY TITLE
 
   describe('findByTitle', () => {
     describe('Cuando la nota existe', () => {
