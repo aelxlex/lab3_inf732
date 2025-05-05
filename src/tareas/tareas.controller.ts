@@ -1,4 +1,6 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { CreateTareaDto } from './dto/create-tarea.dto';
+import { UpdateTareaDto } from './dto/update-tarea.dto';
+import { Controller, Get, Post, Put, Delete, Param, Body, BadRequestException } from '@nestjs/common';
 import { TareasService } from './tareas.service';
 import { Tarea } from './tarea.entity';
 
@@ -18,6 +20,11 @@ export class TareasController {
 
   @Post()
   create(@Body() tarea: Partial<Tarea>): Promise<Tarea> {
+    // Validación del campo 'title'
+    if (!tarea.title) {
+      throw new BadRequestException('El título es obligatorio');
+    }
+    
     return this.tareasService.create(tarea);
   }
 
